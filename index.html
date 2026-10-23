@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>App Control Panel</title>
+    <title>New Design Test Panel</title>
     <style>
         * {
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Courier New', Courier, monospace;
             margin: 0;
             padding: 0;
         }
         body {
-            background-color: #0f172a;
-            color: #f8fafc;
+            background-color: #2e1065; /* একদম নতুন গাড় পার্পল ব্যাকগ্রাউন্ড */
+            color: #facc15; /* উজ্জ্বল হলুদ লেখা */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -21,17 +21,20 @@
             padding: 20px;
         }
         .container {
-            background-color: #1e293b;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            background-color: #4c1d95;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(250, 204, 21, 0.5);
             width: 100%;
             max-width: 450px;
+            border: 3px dashed #facc15;
         }
         h2 {
             text-align: center;
             margin-bottom: 20px;
-            color: #38bdf8;
+            color: #ff007f; /* নিয়ন পিংক হেডিং */
+            font-size: 22px;
+            text-transform: uppercase;
         }
         .form-group {
             margin-bottom: 15px;
@@ -39,30 +42,32 @@
         label {
             display: block;
             margin-bottom: 5px;
-            font-weight: 600;
+            font-weight: bold;
             font-size: 14px;
+            color: #38bdf8;
         }
         input[type="text"], textarea {
             width: 100%;
             padding: 10px;
-            border-radius: 6px;
-            border: 1px solid #334155;
-            background-color: #0f172a;
+            border-radius: 8px;
+            border: 2px solid #facc15;
+            background-color: #1e1b4b;
             color: #fff;
             font-size: 14px;
         }
         textarea {
             resize: vertical;
-            height: 80px;
+            height: 70px;
         }
         .switch-group {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 15px;
-            background: #0f172a;
-            padding: 10px;
-            border-radius: 6px;
+            background: #1e1b4b;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ff007f;
         }
         .switch {
             position: relative;
@@ -70,16 +75,12 @@
             width: 50px;
             height: 26px;
         }
-        .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
+        .switch input { opacity: 0; width: 0; height: 0; }
         .slider {
             position: absolute;
             cursor: pointer;
             top: 0; left: 0; right: 0; bottom: 0;
-            background-color: #475569;
+            background-color: #64748b;
             transition: .4s;
             border-radius: 34px;
         }
@@ -94,43 +95,37 @@
             transition: .4s;
             border-radius: 50%;
         }
-        input:checked + .slider {
-            background-color: #22c55e;
-        }
-        input:checked + .slider:before {
-            transform: translateX(24px);
-        }
+        input:checked + .slider { background-color: #ff007f; }
+        input:checked + .slider:before { transform: translateX(24px); }
         button {
             width: 100%;
-            padding: 12px;
-            background-color: #0284c7;
+            padding: 14px;
+            background-color: #ff007f;
             border: none;
             color: white;
             font-size: 16px;
             font-weight: bold;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: background 0.3s;
-            margin-top: 10px;
+            box-shadow: 0 4px 10px rgba(255,0,127,0.4);
         }
-        button:hover {
-            background-color: #0369a1;
-        }
+        button:hover { background-color: #e60073; }
         #msg {
             margin-top: 15px;
             text-align: center;
             font-weight: bold;
-            font-size: 14px;
+            font-size: 15px;
+            color: #facc15;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h2>App Control Panel</h2>
+    <h2>🚀 ডিজাইন টেস্ট মোড v2</h2>
     
     <div class="switch-group">
-        <label>অ্যাপ স্ট্যাটাস (ON/OFF):</label>
+        <label>অ্যাপ স্ট্যাটাস:</label>
         <label class="switch">
             <input type="checkbox" id="app_status">
             <span class="slider"></span>
@@ -138,7 +133,7 @@
     </div>
 
     <div class="switch-group">
-        <label>বাধ্যতামূলক আপডেট (Force Update):</label>
+        <label>ফোর্স আপডেট:</label>
         <label class="switch">
             <input type="checkbox" id="force_update">
             <span class="slider"></span>
@@ -146,21 +141,21 @@
     </div>
 
     <div class="form-group">
-        <label>সর্বশেষ আপডেট ভার্সন:</label>
-        <input type="text" id="version" placeholder="যেমন: 1.0.0">
+        <label>ভার্সন:</label>
+        <input type="text" id="version">
     </div>
 
     <div class="form-group">
-        <label>APK ডাউনলোড লিংক:</label>
-        <input type="text" id="download_url" placeholder="https://...">
+        <label>ডাউনলোড লিংক:</label>
+        <input type="text" id="download_url">
     </div>
 
     <div class="form-group">
-        <label>এডমিন পপ-আপ নোটিশ/মেসেজ:</label>
-        <textarea id="notice" placeholder="এখানে মেসেজ লিখুন..."></textarea>
+        <label>নোটিশ:</label>
+        <textarea id="notice"></textarea>
     </div>
 
-    <button onclick="saveConfig()">সেটিংস সেভ করুন</button>
+    <button onclick="saveConfig()">নতুন ডিজাইনে সেভ করুন</button>
     <div id="msg"></div>
 </div>
 
@@ -168,14 +163,13 @@
     const GITHUB_USER = "youmizbah2-cyber";
     const REPO_NAME = "Mz44";
     const FILE_PATH = "config.json";
-    // নিচে আপনার কপি করা আসল গিটহাব টোকেনটি বসান
-    const GITHUB_TOKEN = "আপনার_আসল_টোকেন_এখানে_বসান"; 
+    const GITHUB_TOKEN = "আপনার_আসল_টোকেন_এখানে_বসান"; // আপনার টোকেন এখানে বসাবেন
 
     const API_URL = `https://api.github.com/repos/${GITHUB_USER}/${REPO_NAME}/contents/${FILE_PATH}`;
     let fileSha = "";
 
     async function loadConfig() {
-        document.getElementById('msg').innerText = "ডাটা লোড হচ্ছে...";
+        document.getElementById('msg').innerText = "টেস্ট ডাটা লোড হচ্ছে...";
         try {
             let response = await fetch(API_URL, {
                 headers: { "Authorization": `token ${GITHUB_TOKEN}` }
@@ -190,9 +184,9 @@
                 document.getElementById('version').value = content.version || "";
                 document.getElementById('download_url').value = content.download_url || "";
                 document.getElementById('notice').value = content.notice || "";
-                document.getElementById('msg').innerText = "";
+                document.getElementById('msg').innerText = "✅ নতুন ডিজাইন সফলভাবে লোড হয়েছে!";
             } else {
-                document.getElementById('msg').innerText = "ডাটা লোড করতে সমস্যা হয়েছে!";
+                document.getElementById('msg').innerText = "লোড করতে সমস্যা!";
             }
         } catch (error) {
             document.getElementById('msg').innerText = "নেটওয়ার্ক এরর!";
@@ -201,7 +195,6 @@
 
     async function saveConfig() {
         document.getElementById('msg').innerText = "সেভ হচ্ছে...";
-
         let updatedData = {
             app_status: document.getElementById('app_status').checked,
             force_update: document.getElementById('force_update').checked,
@@ -209,7 +202,6 @@
             download_url: document.getElementById('download_url').value,
             notice: document.getElementById('notice').value
         };
-
         let contentEncoded = btoa(unescape(encodeURIComponent(JSON.stringify(updatedData, null, 2))));
 
         try {
@@ -220,24 +212,21 @@
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    message: "Update config via Admin Panel",
+                    message: "Test design update",
                     content: contentEncoded,
                     sha: fileSha
                 })
             });
-
             let result = await response.json();
             if(response.ok) {
                 fileSha = result.content.sha;
-                document.getElementById('msg').innerText = "গিটহাবে সফলভাবে সেভ হয়েছে!";
                 alert("সফলভাবে সেভ হয়েছে!");
+                document.getElementById('msg').innerText = "🎉 গিটহাবে পার্মানেন্ট সেভ হয়েছে!";
             } else {
-                alert("সেভ হয়নি! ত্রুটি: " + (result.message || "অজানা সমস্যা"));
-                document.getElementById('msg').innerText = "সেভ করতে সমস্যা হয়েছে!";
+                alert("সেভ হয়নি: " + result.message);
             }
         } catch (error) {
-            alert("নেটওয়ার্ক বা কোড ত্রুটি: " + error.message);
-            document.getElementById('msg').innerText = "নেটওয়ার্ক ত্রুটি!";
+            alert("ত্রুটি: " + error.message);
         }
     }
 
