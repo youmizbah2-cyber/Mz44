@@ -12,7 +12,7 @@
         .form-group { margin-bottom: 15px; }
         label { display: block; margin-bottom: 5px; font-weight: 600; font-size: 14px; }
         input[type="text"], textarea { width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #334155; background-color: #0f172a; color: #fff; font-size: 14px; }
-        textarea { resize: vertical; height: 80px; }
+        textarea { resize: vertical; height: 70px; }
         .switch-group { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; background: #0f172a; padding: 10px; border-radius: 6px; }
         .switch { position: relative; display: inline-block; width: 50px; height: 26px; }
         .switch input { opacity: 0; width: 0; height: 0; }
@@ -57,6 +57,16 @@
     </div>
 
     <div class="form-group">
+        <label>অ্যাডমিন ইউজারনেম:</label>
+        <input type="text" id="admin_username" placeholder="নতুন ইউজারনেম">
+    </div>
+
+    <div class="form-group">
+        <label>অ্যাডমিন পাসওয়ার্ড:</label>
+        <input type="text" id="admin_password" placeholder="নতুন পাসওয়ার্ড">
+    </div>
+
+    <div class="form-group">
         <label>এডমিন পপ-আপ নোটিশ/মেসেজ:</label>
         <textarea id="notice" placeholder="এখানে মেসেজ লিখুন..."></textarea>
     </div>
@@ -69,7 +79,7 @@
     const GITHUB_USER = "youmizbah2-cyber";
     const REPO_NAME = "Mz44";
     const FILE_PATH = "config.json";
-    const GITHUB_TOKEN = "YOUR_GITHUB_TOKEN_HERE"; // এখানে আপনার আসল ইংলিশ টোকেনটি বসান
+    const GITHUB_TOKEN = "Ghp_tQuBP0k3YqRmTqY5DGUkLt13zEm2cp2xYvi4";
 
     const API_URL = `https://api.github.com/repos/${GITHUB_USER}/${REPO_NAME}/contents/${FILE_PATH}`;
     let fileSha = "";
@@ -89,6 +99,8 @@
                 document.getElementById('force_update').checked = content.force_update || false;
                 document.getElementById('version').value = content.version || "";
                 document.getElementById('download_url').value = content.download_url || "";
+                document.getElementById('admin_username').value = content.username || "";
+                document.getElementById('admin_password').value = content.password || "";
                 document.getElementById('notice').value = content.notice || "";
                 document.getElementById('msg').innerText = "";
             } else {
@@ -107,6 +119,8 @@
             force_update: document.getElementById('force_update').checked,
             version: document.getElementById('version').value,
             download_url: document.getElementById('download_url').value,
+            username: document.getElementById('admin_username').value,
+            password: document.getElementById('admin_password').value,
             notice: document.getElementById('notice').value
         };
 
@@ -120,7 +134,7 @@
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    message: "Update config via Admin Panel",
+                    message: "Update config and credentials via Admin Panel",
                     content: contentEncoded,
                     sha: fileSha
                 })
