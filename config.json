@@ -1,0 +1,7 @@
+{
+    "app_active": true,
+    "force_update": false,
+    "version": "1.0.0",
+    "apk_url": "https://example.com/app.apk",
+    "popup_message": "স্বাগতম"
+}
