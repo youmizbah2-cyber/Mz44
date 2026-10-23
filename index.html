@@ -5,123 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>App Control Panel</title>
     <style>
-        * {
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        body {
-            background-color: #0f172a;
-            color: #f8fafc;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
-        .container {
-            background-color: #1e293b;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-            width: 100%;
-            max-width: 450px;
-        }
-        h2 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #38bdf8;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 600;
-            font-size: 14px;
-        }
-        input[type="text"], textarea {
-            width: 100%;
-            padding: 10px;
-            border-radius: 6px;
-            border: 1px solid #334155;
-            background-color: #0f172a;
-            color: #fff;
-            font-size: 14px;
-        }
-        textarea {
-            resize: vertical;
-            height: 80px;
-        }
-        .switch-group {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            background: #0f172a;
-            padding: 10px;
-            border-radius: 6px;
-        }
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 50px;
-            height: 26px;
-        }
-        .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-color: #475569;
-            transition: .4s;
-            border-radius: 34px;
-        }
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 18px;
-            width: 18px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            transition: .4s;
-            border-radius: 50%;
-        }
-        input:checked + .slider {
-            background-color: #22c55e;
-        }
-        input:checked + .slider:before {
-            transform: translateX(24px);
-        }
-        button {
-            width: 100%;
-            padding: 12px;
-            background-color: #0284c7;
-            border: none;
-            color: white;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: background 0.3s;
-            margin-top: 10px;
-        }
-        button:hover {
-            background-color: #0369a1;
-        }
-        #msg {
-            margin-top: 15px;
-            text-align: center;
-            font-weight: bold;
-            font-size: 14px;
-        }
+        * { box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; }
+        body { background-color: #0f172a; color: #f8fafc; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
+        .container { background-color: #1e293b; padding: 25px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); width: 100%; max-width: 450px; }
+        h2 { text-align: center; margin-bottom: 20px; color: #38bdf8; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: 600; font-size: 14px; }
+        input[type="text"], textarea { width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #334155; background-color: #0f172a; color: #fff; font-size: 14px; }
+        textarea { resize: vertical; height: 80px; }
+        .switch-group { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; background: #0f172a; padding: 10px; border-radius: 6px; }
+        .switch { position: relative; display: inline-block; width: 50px; height: 26px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #475569; transition: .4s; border-radius: 34px; }
+        .slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: #22c55e; }
+        input:checked + .slider:before { transform: translateX(24px); }
+        button { width: 100%; padding: 12px; background-color: #0284c7; border: none; color: white; font-size: 16px; font-weight: bold; border-radius: 6px; cursor: pointer; transition: background 0.3s; margin-top: 10px; }
+        button:hover { background-color: #0369a1; }
+        #msg { margin-top: 15px; text-align: center; font-weight: bold; font-size: 14px; }
     </style>
 </head>
 <body>
@@ -168,8 +69,7 @@
     const GITHUB_USER = "youmizbah2-cyber";
     const REPO_NAME = "Mz44";
     const FILE_PATH = "config.json";
-    // নিচে আপনার কপি করা আসল গিটহাব টোকেনটি বসান
-    const GITHUB_TOKEN = "আপনার_আসল_টোকেন_এখানে_বসান"; 
+    const GITHUB_TOKEN = "YOUR_GITHUB_TOKEN_HERE"; // এখানে আপনার আসল ইংলিশ টোকেনটি বসান
 
     const API_URL = `https://api.github.com/repos/${GITHUB_USER}/${REPO_NAME}/contents/${FILE_PATH}`;
     let fileSha = "";
@@ -183,7 +83,7 @@
             if(response.ok) {
                 let data = await response.json();
                 fileSha = data.sha;
-                let content = JSON.parse(atob(data.content));
+                let content = JSON.parse(decodeURIComponent(escape(atob(data.content))));
 
                 document.getElementById('app_status').checked = content.app_status || false;
                 document.getElementById('force_update').checked = content.force_update || false;
@@ -195,7 +95,7 @@
                 document.getElementById('msg').innerText = "ডাটা লোড করতে সমস্যা হয়েছে!";
             }
         } catch (error) {
-            document.getElementById('msg').innerText = "নেটওয়ার্ক এরর!";
+            document.getElementById('msg').innerText = "নেটওয়ার্ক বা টোকেন ত্রুটি!";
         }
     }
 
@@ -229,14 +129,14 @@
             let result = await response.json();
             if(response.ok) {
                 fileSha = result.content.sha;
-                document.getElementById('msg').innerText = "গিটহাবে সফলভাবে সেভ হয়েছে!";
+                document.getElementById('msg').innerText = "সফলভাবে গিটহাবে সেভ হয়েছে!";
                 alert("সফলভাবে সেভ হয়েছে!");
             } else {
                 alert("সেভ হয়নি! ত্রুটি: " + (result.message || "অজানা সমস্যা"));
                 document.getElementById('msg').innerText = "সেভ করতে সমস্যা হয়েছে!";
             }
         } catch (error) {
-            alert("নেটওয়ার্ক বা কোড ত্রুটি: " + error.message);
+            alert("নেটওয়ার্ক ত্রুটি: " + error.message);
             document.getElementById('msg').innerText = "নেটওয়ার্ক ত্রুটি!";
         }
     }
