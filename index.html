@@ -3,25 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>App Master Control Panel</title>
+    <title>App Control Panel</title>
     <style>
-        body { font-family: Arial, sans-serif; background: #0f172a; color: #f8fafc; margin: 0; padding: 20px; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-        .container { background: #1e293b; border-radius: 12px; padding: 24px; width: 100%; max-width: 450px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
-        h2 { color: #38bdf8; text-align: center; margin-top: 0; }
-        .form-group { margin-bottom: 15px; }
-        label { display: block; font-size: 14px; margin-bottom: 5px; color: #94a3b8; }
-        input[type="text"], textarea { width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #334155; background: #0f172a; color: #fff; box-sizing: border-box; }
-        textarea { resize: vertical; height: 60px; }
-        .status-toggle { display: flex; justify-content: space-between; align-items: center; background: #0f172a; padding: 10px 15px; border-radius: 6px; }
-        .switch { position: relative; display: inline-block; width: 46px; height: 24px; }
-        .switch input { opacity: 0; width: 0; height: 0; }
-        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ef4444; transition: .3s; border-radius: 24px; }
-        .slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: .3s; border-radius: 50%; }
-        input:checked + .slider { background-color: #22c55e; }
-        input:checked + .slider:before { transform: translateX(22px); }
-        button { width: 100%; padding: 12px; background: #38bdf8; color: #0f172a; font-weight: bold; border: none; border-radius: 6px; cursor: pointer; margin-top: 10px; }
-        button:hover { background: #0284c7; color: white; }
-        .msg { text-align: center; font-size: 13px; color: #4ade80; margin-top: 10px; }
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-color: #0f172a;
+            color: #f8fafc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            background-color: #1e293b;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            width: 100%;
+            max-width: 450px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #38bdf8;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #334155;
+            background-color: #0f172a;
+            color: #fff;
+            font-size: 14px;
+        }
+        textarea {
+            resize: vertical;
+            height: 80px;
+        }
+        .switch-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            background: #0f172a;
+            padding: 10px;
+            border-radius: 6px;
+        }
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 26px;
+        }
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #475569;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: #22c55e;
+        }
+        input:checked + .slider:before {
+            transform: translateX(24px);
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #0284c7;
+            border: none;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #0369a1;
+        }
+        #msg {
+            margin-top: 15px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
@@ -29,16 +129,16 @@
 <div class="container">
     <h2>App Control Panel</h2>
     
-    <div class="form-group status-toggle">
-        <span>অ্যাপ স্ট্যাটাস (ON/OFF):</span>
+    <div class="switch-group">
+        <label>অ্যাপ স্ট্যাটাস (ON/OFF):</label>
         <label class="switch">
             <input type="checkbox" id="app_status">
             <span class="slider"></span>
         </label>
     </div>
 
-    <div class="form-group status-toggle">
-        <span>বাধ্যতামূলক আপডেট (Force Update):</span>
+    <div class="switch-group">
+        <label>বাধ্যতামূলক আপডেট (Force Update):</label>
         <label class="switch">
             <input type="checkbox" id="force_update">
             <span class="slider"></span>
@@ -47,77 +147,81 @@
 
     <div class="form-group">
         <label>সর্বশেষ আপডেট ভার্সন:</label>
-        <input type="text" id="app_version">
+        <input type="text" id="version" placeholder="যেমন: 1.0.0">
     </div>
 
     <div class="form-group">
         <label>APK ডাউনলোড লিংক:</label>
-        <input type="text" id="apk_link">
+        <input type="text" id="download_url" placeholder="https://...">
     </div>
 
     <div class="form-group">
         <label>এডমিন পপ-আপ নোটিশ/মেসেজ:</label>
-        <textarea id="popup_msg"></textarea>
+        <textarea id="notice" placeholder="এখানে মেসেজ লিখুন..."></textarea>
     </div>
 
     <button onclick="saveConfig()">সেটিংস সেভ করুন</button>
-    <div class="msg" id="msg"></div>
+    <div id="msg"></div>
 </div>
 
 <script>
-    // আপনার গিটহাবের তথ্য
     const GITHUB_USER = "youmizbah2-cyber";
     const REPO_NAME = "Mz44";
     const FILE_PATH = "config.json";
-    const GITHUB_TOKEN = "ghp_tQuBP0k3YqRmTQy5DGUkLt13zEm2cp2xYvi4";
+    // নিচে আপনার কপি করা আসল গিটহাব টোকেনটি বসান
+    const GITHUB_TOKEN = "আপনার_আসল_টোকেন_এখানে_বসান"; 
 
     const API_URL = `https://api.github.com/repos/${GITHUB_USER}/${REPO_NAME}/contents/${FILE_PATH}`;
-
     let fileSha = "";
 
-    // পেজ লোড হলে গিটহাব থেকে ডাটা রিড করবে
-    window.onload = async function() {
+    async function loadConfig() {
+        document.getElementById('msg').innerText = "ডাটা লোড হচ্ছে...";
         try {
             let response = await fetch(API_URL, {
-                headers: { 'Authorization': `token ${GITHUB_TOKEN}` }
+                headers: { "Authorization": `token ${GITHUB_TOKEN}` }
             });
-            let result = await response.json();
-            fileSha = result.sha;
+            if(response.ok) {
+                let data = await response.json();
+                fileSha = data.sha;
+                let content = JSON.parse(atob(data.content));
 
-            let content = JSON.parse(atob(result.content));
-            
-            document.getElementById('app_status').checked = content.app_active;
-            document.getElementById('force_update').checked = content.force_update;
-            document.getElementById('app_version').value = content.version;
-            document.getElementById('apk_link').value = content.apk_url;
-            document.getElementById('popup_msg').value = content.popup_message;
+                document.getElementById('app_status').checked = content.app_status || false;
+                document.getElementById('force_update').checked = content.force_update || false;
+                document.getElementById('version').value = content.version || "";
+                document.getElementById('download_url').value = content.download_url || "";
+                document.getElementById('notice').value = content.notice || "";
+                document.getElementById('msg').innerText = "";
+            } else {
+                document.getElementById('msg').innerText = "ডাটা লোড করতে সমস্যা হয়েছে!";
+            }
         } catch (error) {
-            console.error("ডাটা লোড করতে সমস্যা হয়েছে:", error);
+            document.getElementById('msg').innerText = "নেটওয়ার্ক এরর!";
         }
     }
 
-    // সেভ বাটনে ক্লিক করলে গিটহাবে ফাইল আপডেট হবে
     async function saveConfig() {
-        let config = {
-            app_active: document.getElementById('app_status').checked,
+        document.getElementById('msg').innerText = "সেভ হচ্ছে...";
+
+        let updatedData = {
+            app_status: document.getElementById('app_status').checked,
             force_update: document.getElementById('force_update').checked,
-            version: document.getElementById('app_version').value,
-            apk_url: document.getElementById('apk_link').value,
-            popup_message: document.getElementById('popup_msg').value
+            version: document.getElementById('version').value,
+            download_url: document.getElementById('download_url').value,
+            notice: document.getElementById('notice').value
         };
 
-        let encodedContent = btoa(unescape(encodeURIComponent(JSON.stringify(config, null, 2))));
+        let contentEncoded = btoa(unescape(encodeURIComponent(JSON.stringify(updatedData, null, 2))));
 
         try {
             let response = await fetch(API_URL, {
-                method: 'PUT',
+                method: "PUT",
                 headers: {
-                    'Authorization': `token ${GITHUB_TOKEN}`,
-                    'Content-Type': 'application/json'
+                    "Authorization": `token ${GITHUB_TOKEN}`,
+                    "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    message: "Update app config via admin panel",
-                    content: encodedContent,
+                    message: "Update config via Admin Panel",
+                    content: contentEncoded,
                     sha: fileSha
                 })
             });
@@ -125,14 +229,19 @@
             let result = await response.json();
             if(response.ok) {
                 fileSha = result.content.sha;
-                document.getElementById('msg').innerText = 'গিটহাবে সফলভাবে স্থায়ীভাবে সেভ হয়েছে!';
+                document.getElementById('msg').innerText = "গিটহাবে সফলভাবে সেভ হয়েছে!";
+                alert("সফলভাবে সেভ হয়েছে!");
             } else {
-                document.getElementById('msg').innerText = 'সেভ করতে সমস্যা হয়েছে!';
+                alert("সেভ হয়নি! ত্রুটি: " + (result.message || "অজানা সমস্যা"));
+                document.getElementById('msg').innerText = "সেভ করতে সমস্যা হয়েছে!";
             }
         } catch (error) {
-            document.getElementById('msg').innerText = 'নেটওয়ার্ক ত্রুটি!';
+            alert("নেটওয়ার্ক বা কোড ত্রুটি: " + error.message);
+            document.getElementById('msg').innerText = "নেটওয়ার্ক ত্রুটি!";
         }
     }
+
+    window.onload = loadConfig;
 </script>
 
 </body>
